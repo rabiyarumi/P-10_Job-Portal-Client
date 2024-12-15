@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Tooltip } from 'react-tooltip';
+import AuthContext from '../context/AuthContext/AuthContext';
 
-const Navbar = ({user}) => {
+const Navbar = () => {
+
+  const {user} = useContext(AuthContext)
 
     const links = (
         <>
@@ -83,7 +86,7 @@ const Navbar = ({user}) => {
                 content={
                   <div>
                     <p>{user.displayName}</p>
-                    <button onClick={logOut} className="btn">
+                    <button  className="btn">
                       Log Out
                     </button>
                   </div>
