@@ -2,10 +2,15 @@ import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Tooltip } from 'react-tooltip';
 import AuthContext from '../context/AuthContext/AuthContext';
+import logo from '../assets/logos/job-application-64.png'
 
 const Navbar = () => {
 
-  const {user} = useContext(AuthContext)
+  const {user, logout} = useContext(AuthContext);
+
+  const handleSignout= () => {
+      logout()
+  }
 
     const links = (
         <>
@@ -56,8 +61,10 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <Link to={"/"} className="text-xl font-bold md:text-2xl text-primary ">
-            Crowdcube
+         
+          <Link to={"/"} className="text-xl font-bold md:text-2xl text-primary flex items-center ">
+          <img src={logo} alt="" className='w-8'/>
+           <h2> Job Portal</h2>
           </Link>
         </div>
   
@@ -86,7 +93,7 @@ const Navbar = () => {
                 content={
                   <div>
                     <p>{user.displayName}</p>
-                    <button  className="btn">
+                    <button onClick={handleSignout} className="btn">
                       Log Out
                     </button>
                   </div>
